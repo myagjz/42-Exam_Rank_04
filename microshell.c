@@ -35,7 +35,7 @@ int	exec(char **av, char **envp, int i)
 		return err("error: cannot execute "), err(*av), err("\n");
 	}
 
-	watpid(pid, &status, 0);
+	waitpid(pid, &status, 0);
 	if (has_pipe && (dup2(fd[0], 0) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
 			return err("error: fatal\n");
 	return WEXITSTATUS(status);
